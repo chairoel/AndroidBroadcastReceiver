@@ -1,4 +1,4 @@
-package com.amrul.connection.testapplication;
+package com.amrul.connection.broadcastreceiverapp;
 
 import org.junit.Test;
 

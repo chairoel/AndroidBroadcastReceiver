@@ -1,4 +1,4 @@
-package com.amrul.connection.testapplication;
+package com.amrul.connection.broadcastreceiverapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
