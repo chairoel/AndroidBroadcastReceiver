@@ -1,24 +1,31 @@
 package com.amrul.connection.broadcastreceiverapp;
 
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    ConnectionReceiver exampleBroadcastReceiver = new ConnectionReceiver();
+    ConnectionReceiver broadcastReceiver = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        IntentFilter filter = new IntentFilter("com.amrul.connection.EXAMPLE_ACTION");
-        registerReceiver(exampleBroadcastReceiver, filter);
+
+        broadcastReceiver = new ConnectionReceiver();
+        checkInternet();
+    }
+
+    private void checkInternet() {
+        registerReceiver(broadcastReceiver,
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(exampleBroadcastReceiver);
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
     }
 }
